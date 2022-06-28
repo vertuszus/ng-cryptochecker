@@ -1,5 +1,11 @@
 # NgCryptochecker
 
+![image](https://user-images.githubusercontent.com/72495167/176225343-ee92d0bf-866d-4aab-8ac4-75ce166c6ce6.png)
+
+![image](https://user-images.githubusercontent.com/72495167/176225475-a50f34b1-b03b-4416-87df-0528cec42b4a.png)
+
+![image](https://user-images.githubusercontent.com/72495167/176225603-19645a5f-b6fa-4cb9-9999-dded8db19cef.png)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.1.
 
 ## Development server
