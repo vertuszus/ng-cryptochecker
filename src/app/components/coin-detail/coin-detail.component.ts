@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ApiService} from "../../services/api.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Params} from "@angular/router";
 import {ChartConfiguration, ChartType} from "chart.js";
 import {BaseChartDirective} from "ng2-charts";
 import {InitialLineChartData} from "../../values/initial-line-chart-data";
@@ -40,10 +40,11 @@ export class CoinDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
-      (val: any) => {
+      (val: Params) => {
+        console.log(val);
         this.coinId = val['id'];
       },
-      (err: any) => {
+      (err) => {
        console.error(err)
       });
     this.getCoinData();
@@ -54,14 +55,15 @@ export class CoinDetailComponent implements OnInit {
         this.getCoinData();
         this.getGraphData(this.days);
       },
-      (err: any) => {
+      (err) => {
         console.error(err)
       });
   };
 
   getCoinData(): void {
     this._api.getCurrencyById(this.coinId).subscribe(
-      (res: any) => {
+      (res) => {
+        console.log(res);
         this.coinData = res;
         if (this.currency === 'USD') {
           res.market_data.current_price.rub = res.market_data.current_price.usd;
@@ -72,7 +74,7 @@ export class CoinDetailComponent implements OnInit {
           this.coinData = res;
         }
       },
-      (err: any) => {
+      (err) => {
         console.error(err)
       })
   };
@@ -81,7 +83,7 @@ export class CoinDetailComponent implements OnInit {
     this.days = days;
     this._api.getGraphicalCurrencyData(this.coinId, this.currency, this.days)
       .subscribe(
-        (res: any) => {
+        (res) => {
           setTimeout(() => {
             this.myLineChart.chart?.update();
           }, 50);
@@ -96,7 +98,7 @@ export class CoinDetailComponent implements OnInit {
             return this.days === 1 ? time : date.toLocaleDateString();
           })
         },
-        (err: any) => {
+        (err) => {
           console.error(err);
         }
       )
